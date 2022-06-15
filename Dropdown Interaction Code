@@ -1,0 +1,15 @@
+public async Task OnDropdownSelect(DiscordClient client, ComponentInteractionCreateEventArgs args)
+        {
+            // Deleting message then asking for role
+            await args.Message.DeleteAsync();
+            await args.Channel.SendMessageAsync($"What role are you assigning to {args.Values[0]}?");
+
+            var reactResult = await args.Channel.GetNextMessageAsync(m => m.Author.Id == args.User.Id );
+
+
+
+            // Check to see if role exists.
+            await args.Channel.SendMessageAsync(reactResult.ToString());
+
+            
+        }
